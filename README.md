@@ -95,6 +95,12 @@ A federação está limitada ao repositório e à branch principal. Não existe 
 
 Pull requests executam o workflow de validação `.github/workflows/validate.yml`, sem publicar em produção.
 
+### Estado operacional
+
+- O workflow e a federação OIDC estão configurados.
+- A primeira execução foi impedida antes de iniciar pelo bloqueio de faturamento da conta GitHub. Depois de regularizar o billing da conta, execute **Actions → Deploy Firebase Hosting → Run workflow** uma vez para confirmar o pipeline.
+- Enquanto o bloqueio existir, deploys manuais com a Firebase CLI continuam disponíveis.
+
 ## Adicionar oportunidades
 
 ### Pelo painel
@@ -106,6 +112,8 @@ Entre com a conta Google autorizada, clique em **Nova oportunidade** e preencha 
 A Cloud Function preparada em `functions/index.js` fornece operações administrativas. Consulte [docs/ADMIN_API.md](docs/ADMIN_API.md) para endpoints, autenticação e payloads.
 
 Essa API depende do secret `ADMIN_API_TOKEN` no Google Secret Manager e do plano Blaze para ser publicada. Nunca coloque o token em código, no frontend ou em arquivos versionados.
+
+O projeto Firebase está atualmente sem faturamento. Por isso, o código da API está pronto e validado, mas a função e o secret ainda não podem ser provisionados. Ativar o plano Blaze é o único pré-requisito externo restante para essa etapa.
 
 ## Alterar o painel
 

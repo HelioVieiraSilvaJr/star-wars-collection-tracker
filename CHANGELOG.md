@@ -17,6 +17,7 @@ Todas as mudanças relevantes deste projeto serão documentadas neste arquivo.
 ### Changed
 
 - Firestore consolidado como fonte única de verdade; novas oportunidades aparecem em tempo real sem deploy do frontend.
+- Documentação registra os pré-requisitos externos de faturamento para executar GitHub Actions e publicar a Cloud Function administrativa.
 
 ### Security
 
