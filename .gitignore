@@ -1,0 +1,9 @@
+node_modules
+dist
+.firebase
+firebase-debug.log
+*.local
+.DS_Store
+gha-creds-*.json
+functions/node_modules
+functions/.secret.local

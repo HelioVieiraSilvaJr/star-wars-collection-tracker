@@ -1,0 +1,31 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isOwner() {
+      return request.auth != null
+        && request.auth.token.email == 'helio.engenharia@gmail.com'
+        && request.auth.token.email_verified == true;
+    }
+
+    function hasValidOpportunityData() {
+      return request.resource.data.keys().hasOnly([
+          'title', 'collection', 'category', 'platform', 'price', 'url',
+          'condition', 'status', 'notes', 'discoveredAt', 'lastCheckedAt',
+          'createdAt', 'updatedAt', 'acquiredAt'
+        ])
+        && request.resource.data.title is string
+        && request.resource.data.collection is string
+        && request.resource.data.category is string
+        && request.resource.data.platform is string
+        && request.resource.data.price is number
+        && request.resource.data.price >= 0
+        && request.resource.data.status in ['Avaliando', 'Wishlist', 'Comprado', 'Descartado'];
+    }
+
+    match /opportunities/{opportunityId} {
+      allow read, delete: if isOwner();
+      allow create, update: if isOwner() && hasValidOpportunityData();
+    }
+  }
+}
