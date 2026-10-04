@@ -22,3 +22,4 @@ Todas as mudanças relevantes deste projeto serão documentadas neste arquivo.
 
 - Regras do Firestore validam o formato das oportunidades e mantêm leitura e escrita limitadas ao proprietário.
 - API administrativa usa secret do Google Secret Manager e comparação de token em tempo constante.
+- Deploy do GitHub usa identidade federada restrita ao repositório e à branch principal, sem credencial persistente.
